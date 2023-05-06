@@ -1,0 +1,57 @@
+package com.pace.university.CSGraduateStudents.Controller;
+
+
+import com.pace.university.CSGraduateStudents.Model.CSGradStudent;
+import com.pace.university.CSGraduateStudents.Service.CSGradStudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import java.util.HashMap;
+import java.util.List;
+
+@Controller
+public class CSGradStudentsController {
+
+    @Autowired
+    private CSGradStudentService csGradStudentService;
+
+    @RequestMapping(value = "/", method=RequestMethod.GET)
+    public String root(){
+        return "index";
+    }
+
+    @RequestMapping(value="/students", method = RequestMethod.GET)
+    public ResponseEntity<List<CSGradStudent>> getStudents(){
+        List<CSGradStudent> csGradStudentList = this.csGradStudentService.getAllStudents();
+        return new ResponseEntity<>(csGradStudentList,HttpStatus.OK);
+    }
+
+    @RequestMapping(value="students/{id}", method = RequestMethod.GET)
+    public ResponseEntity<CSGradStudent> getStudentById(@PathVariable("id") int id){
+        CSGradStudent csGradStudent = this.csGradStudentService.getStudentByID(id);
+        return new ResponseEntity<>(csGradStudent,HttpStatus.OK);
+    }
+
+    @RequestMapping(value="students/{id}/courseRegistered", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String,String>> getCourseRegisteredById(@PathVariable("id") int id)
+    {
+        HashMap<String,String> courseRegistered = this.csGradStudentService.getCourseRegisteredById(id);
+        return new ResponseEntity<>(courseRegistered,HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value="students/{id}/courseRegistered/{courseNumber}", method = RequestMethod.GET)
+    public ResponseEntity<String> getCourseName(@PathVariable("id") int id,@PathVariable("courseNumber") int courseNumber)
+    {
+        String courseName = this.csGradStudentService.getCourseName(id,courseNumber);
+        return new ResponseEntity<>(courseName,HttpStatus.OK);
+
+    }
+
+
+ }
+
+
+

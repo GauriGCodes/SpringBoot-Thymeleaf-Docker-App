@@ -1,0 +1,60 @@
+[{
+  "id": 1,
+  "name": "Roger Lee",
+  "email": "jovan@example.com",
+  "phone": "+49 176 14890478",
+  "age": 32,
+  "courseRegistered": {
+    "1": "CS608 - Algorithms and Computing Theory",
+    "2": "CS615 - Database Management Systems",
+    "3":  "CS222 - Technology Management"
+  }
+},
+{
+"id": 2,
+"name": "Novak Samuals",
+"email": "simu@pace.com",
+"phone": "+1 832 456 4567",
+"age": 24,
+"courseRegistered": {
+  "1": "CS612 - Game Programming",
+  "2": "CS615 - Database Management Systems",
+  "3": "CS666 - Human Computer Interaction"
+}
+},
+  {
+    "id": 3,
+    "name": "Kate Miller",
+    "email": "kate@pace.edu.com",
+    "phone": "+1 832 756 6008",
+    "age": 22,
+    "courseRegistered": {
+      "1": "CS623 - Internet Computing",
+      "2": "CS666 - Business Analytics",
+      "3": "CS222 - Technology Management"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Joey Tribbiani",
+    "email": "joey@pace.edu.com",
+    "phone": "+1 832 222 4005",
+    "age": 36,
+    "courseRegistered": {
+      "1": "CS623 - Internet Computing",
+      "2": "CS404 - Machine Learning",
+      "3": "CS222 - Technology Management"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Ashley Graham",
+    "email": "ashley@pace.edu.com",
+    "phone": "+1 919 756 6005",
+    "age": 29,
+    "courseRegistered": {
+      "1": "CS666 - Business Analytics",
+      "2": "CS615 - Database Management Systems",
+      "3": "CS222 - Technology Management"
+    }
+  }]
