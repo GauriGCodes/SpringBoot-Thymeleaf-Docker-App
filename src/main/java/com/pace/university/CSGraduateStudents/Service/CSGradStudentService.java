@@ -1,5 +1,6 @@
 package com.pace.university.CSGraduateStudents.Service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.pace.university.CSGraduateStudents.Model.CSGradStudent;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.*;
@@ -7,9 +8,11 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.io.IOUtils;
 
 @Service
@@ -23,9 +26,9 @@ public class CSGradStudentService {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("student_database.json");
         String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
         ObjectMapper objectMapper = new ObjectMapper();
-
-            CSGradStudent[] csGradStudent = objectMapper.readValue(content, CSGradStudent[].class);
-            this.csGradStudentList = Arrays.asList(csGradStudent);
+        Map<String,CSGradStudent> csGradStudents = objectMapper.readValue(content, new TypeReference<Map<String,CSGradStudent>>(){});
+        this.csGradStudentList = new ArrayList<CSGradStudent>();
+        this.csGradStudentList.addAll(csGradStudents.values());
         }catch (IOException e){
             System.out.println(e);
         }
