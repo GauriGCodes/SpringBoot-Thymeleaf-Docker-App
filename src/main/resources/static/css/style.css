@@ -1,6 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+body{
+font-family: 'Roboto Mono', monospace;
+}
+
+
 .app-heading {
     font-size: 1.5em;
-    text-align: center;
+    background-color:black;
+    color:white;
+    height:90px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 form {
@@ -12,4 +24,9 @@ form {
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#result{
+text-align:center;
+font-size:1.1em;
 }

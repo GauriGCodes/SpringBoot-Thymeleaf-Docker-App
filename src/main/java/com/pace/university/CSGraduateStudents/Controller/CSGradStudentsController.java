@@ -2,8 +2,10 @@ package com.pace.university.CSGraduateStudents.Controller;
 
 
 import com.pace.university.CSGraduateStudents.Model.CSGradStudent;
+import com.pace.university.CSGraduateStudents.Model.EmptyJsonBody;
 import com.pace.university.CSGraduateStudents.Service.CSGradStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,24 +31,43 @@ public class CSGradStudentsController {
     }
 
     @RequestMapping(value="students/{id}", method = RequestMethod.GET)
-    public ResponseEntity<CSGradStudent> getStudentById(@PathVariable("id") int id){
-        CSGradStudent csGradStudent = this.csGradStudentService.getStudentByID(id);
-        return new ResponseEntity<>(csGradStudent,HttpStatus.OK);
+    public ResponseEntity getStudentById(@PathVariable("id") int id){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        ResponseEntity.BodyBuilder responseBuilder = ResponseEntity.ok().headers(headers);
+        CSGradStudent student = this.csGradStudentService.getStudentByID(id);
+        if(student == null){
+            return responseBuilder.body(new EmptyJsonBody());
+        }
+        return responseBuilder.body(student);
     }
 
     @RequestMapping(value="students/{id}/courseRegistered", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String,String>> getCourseRegisteredById(@PathVariable("id") int id)
+    public ResponseEntity getCourseRegisteredById(@PathVariable("id") int id)
     {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        ResponseEntity.BodyBuilder responseBuilder = ResponseEntity.ok().headers(headers);
         HashMap<String,String> courseRegistered = this.csGradStudentService.getCourseRegisteredById(id);
-        return new ResponseEntity<>(courseRegistered,HttpStatus.OK);
+        if(courseRegistered == null){
+            return responseBuilder.body(new EmptyJsonBody());
+        }
+
+        return responseBuilder.body(courseRegistered);
 
     }
 
     @RequestMapping(value="students/{id}/courseRegistered/{courseNumber}", method = RequestMethod.GET)
-    public ResponseEntity<String> getCourseName(@PathVariable("id") int id,@PathVariable("courseNumber") int courseNumber)
+    public ResponseEntity getCourseName(@PathVariable("id") int id,@PathVariable("courseNumber") int courseNumber)
     {
-        String courseName = this.csGradStudentService.getCourseName(id,courseNumber);
-        return new ResponseEntity<>(courseName,HttpStatus.OK);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        ResponseEntity.BodyBuilder responseBuilder = ResponseEntity.ok().headers(headers);
+        HashMap<String,String> courseName = this.csGradStudentService.getCourseName(id,courseNumber);
+        if(courseName == null){
+            return responseBuilder.body(new EmptyJsonBody());
+        }
+        return responseBuilder.body(courseName);
 
     }
 

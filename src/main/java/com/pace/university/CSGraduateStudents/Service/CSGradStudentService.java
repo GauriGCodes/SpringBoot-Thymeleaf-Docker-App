@@ -4,7 +4,6 @@ import com.pace.university.CSGraduateStudents.Model.CSGradStudent;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.*;
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -34,7 +33,7 @@ public class CSGradStudentService {
     }
 
     public List<CSGradStudent> getAllStudents() {
-            return this.csGradStudentList;
+        return this.csGradStudentList;
     }
 
     public CSGradStudent getStudentByID(int id){
@@ -56,10 +55,12 @@ public class CSGradStudentService {
         return null;
     }
 
-    public String getCourseName(int id, int courseNumber){
+    public HashMap<String,String> getCourseName(int id, int courseNumber){
             for(CSGradStudent student:this.csGradStudentList){
-                if(student.getId() == id){
-                    return student.getCourseRegistered().get(Integer.toString(courseNumber));
+                if(student.getId() == id && student.getCourseRegistered().get(Integer.toString(courseNumber)) != null){
+                    HashMap<String,String> course = new HashMap<>();
+                    course.put(Integer.toString(courseNumber), student.getCourseRegistered().get(Integer.toString(courseNumber)));
+                    return course;
                 }
             }
         return null;

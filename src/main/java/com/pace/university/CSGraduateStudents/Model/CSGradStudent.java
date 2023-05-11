@@ -8,6 +8,7 @@ public class CSGradStudent {
     private String email;
     private String phone;
     private int age;
+    private int semester;
     private HashMap<String,String> courseRegistered;
 
 
@@ -15,12 +16,13 @@ public class CSGradStudent {
 
     }
 
-    public CSGradStudent(int id, String name, String email, String phone, int age, HashMap<String,String> courseRegistered) {
+    public CSGradStudent(int id, String name, String email, String phone, int age,int semester,HashMap<String,String> courseRegistered) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.age = age;
+        this.semester = semester;
         this.courseRegistered = courseRegistered;
     }
 
@@ -70,6 +72,14 @@ public class CSGradStudent {
 
     public void setCourseRegistered(HashMap<String,String> courseRegistered) {
         this.courseRegistered = courseRegistered;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
     }
 
 }
